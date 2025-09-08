@@ -1,227 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zhengbang Zhou | Theoretical Condensed Matter Physics</title>
-  <meta name="description" content="Zhengbang Zhou — Ph.D. candidate in theoretical condensed matter physics at the University of Toronto. Quantum spin liquids, dipolar–octupolar quantum spin ice, ED/MC/NLCE/HPC." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zhengbang Zhou</title>
   <style>
-    :root {
-      --bg: #0b0c10;
-      --panel: #111319;
-      --text: #e8ecf1;
-      --muted: #9aa4af;
-      --accent: #79ffe1;
-      --link: #8ab4f8;
-      --border: #1d2230;
-    }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
     body {
-      margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      background: linear-gradient(180deg, var(--bg), #0d1117 40%, #0b0c10 100%);
-      color: var(--text);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      color: #333;
+      background: #f9f9f9;
     }
-    a { color: var(--link); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .container { max-width: 980px; margin: 0 auto; padding: 24px; }
-    header.hero {
-      padding: 64px 24px 24px; text-align: center; position: relative; overflow: hidden;
+    header {
+      background: #222;
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
     }
-    .tag { display: inline-block; padding: 6px 10px; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); font-size: 12px; margin: 4px; }
-    h1 { font-size: 36px; margin: 12px 0 8px; letter-spacing: 0.2px; }
-    .subtitle { color: var(--muted); font-weight: 400; margin: 0; }
-    nav.topnav { display: flex; gap: 18px; justify-content: center; margin-top: 18px; }
-    nav.topnav a { font-weight: 600; opacity: .9; }
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 18px; }
-    .card {
-      background: rgba(22, 27, 34, 0.75);
-      border: 1px solid var(--border);
-      border-radius: 16px; padding: 18px; box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
     }
-    section { margin: 36px 0; }
-    h2 { font-size: 22px; margin: 0 0 12px; }
-    p { line-height: 1.65; }
-    ul { margin: 0; padding-left: 18px; }
-    .cards-2 > * { grid-column: span 6; }
-    .cards-3 > * { grid-column: span 4; }
-    .pub {
-      display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: start;
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.8;
     }
-    .pub .title { font-weight: 600; }
-    .pub .meta { color: var(--muted); font-size: 14px; }
-    footer { border-top: 1px solid var(--border); color: var(--muted); padding: 32px 24px; text-align: center; margin-top: 24px; }
-    .pill { display:inline-block; background:#111827; border:1px solid var(--border); padding:4px 10px; border-radius:999px; font-size:12px; color: var(--muted);} 
-    .kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background:#0d1117; border:1px solid var(--border); border-bottom-color:#0d0f14; padding:2px 6px; border-radius:6px; font-size:12px; color:#cdd9e5; }
-    .flex { display:flex; align-items:center; gap:12px; flex-wrap: wrap; }
-    .split { display: grid; grid-template-columns: 1.1fr .9fr; gap: 18px; }
-    @media (max-width: 900px){ .cards-2 > *, .cards-3 > * { grid-column: span 12; } .split{ grid-template-columns:1fr; } }
+    nav {
+      margin-top: 1rem;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 0.8rem;
+      font-weight: bold;
+    }
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem 1rem;
+      background: #fff;
+    }
+    section {
+      margin-bottom: 2rem;
+    }
+    h2 {
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 0.3rem;
+      margin-bottom: 1rem;
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #222;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
   </style>
 </head>
 <body>
-  <header class="hero">
-    <div class="container">
-      <div class="flex" style="justify-content:center; gap:8px; margin-bottom:8px;">
-        <span class="tag">Quantum Spin Liquids</span>
-        <span class="tag">Dipolar–Octupolar QSI</span>
-        <span class="tag">ED · NLCE · MC · LL Dynamics</span>
-        <span class="tag">High‑Performance Computing</span>
-      </div>
-      <h1>Zhengbang Zhou</h1>
-      <p class="subtitle">Ph.D. Candidate · Theoretical Condensed Matter Physics · University of Toronto</p>
-      <nav class="topnav">
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#software">Software</a>
-        <a href="#pubs">Publications</a>
-        <a href="#teaching">Teaching</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
+  <header>
+    <h1>Zhengbang Zhou</h1>
+    <p>Ph.D. Candidate in Theoretical Condensed Matter Physics · University of Toronto</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <main class="container">
-    <section id="about" class="grid split">
-      <div class="card">
-        <h2>About</h2>
-        <p>
-          I study emergent gauge phenomena in correlated magnets, with an emphasis on dipolar–octupolar quantum spin ice in Ce-based pyrochlores. Methodologically, I develop and deploy large-scale numerical tools—exact diagonalization (Lanczos/shift‑invert/TPQ), numerical linked‑cluster expansions, Monte Carlo and Landau–Lifshitz dynamics—optimized for modern CPU/GPU clusters.
-        </p>
-        <p>
-          Broadly, my goal is to connect microscopic models to measurable signatures (specific heat, static/dynamical spin structure factors, magnetization processes) and to map field–temperature phase diagrams with controlled approximations.
-        </p>
-        <div class="flex" aria-label="skills">
-          <span class="pill">C++ · CUDA</span>
-          <span class="pill">MPI/OpenMP</span>
-          <span class="pill">Eigen/BLAS</span>
-          <span class="pill">Python</span>
-          <span class="pill">JAX/Numba</span>
-          <span class="pill">Slurm HPC</span>
-        </div>
-      </div>
-      <div class="card">
-        <h2>Current Focus</h2>
-        <ul>
-          <li>Large‑scale ED of a 32‑site pyrochlore cluster (thermodynamics and DSSF).</li>
-          <li>Gauge mean‑field and semiclassical approaches to field‑driven phases in DO‑QSI.</li>
-          <li>Disorder‑averaged NLCE and fast sampling strategies.</li>
-        </ul>
-        <p style="margin-top:8px;">If you'd like a copy of my CV or code samples, feel free to reach out by email.</p>
-      </div>
+  <main>
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        I am a Ph.D. candidate at the University of Toronto, working with Prof. Yong-Baek Kim. 
+        My research focuses on frustrated spin systems. I specialize in <strong>computational methods</strong> 
+        such as exact diagonalization, Monte Carlo simulations, and 
+        numerical linked-cluster expansions.
+      </p>
     </section>
 
-    <section id="research" class="grid cards-3">
-      <div class="card">
-        <h2>Research Highlights</h2>
-        <ul>
-          <li>Magnetic‑field response and phase structure of dipolar–octupolar QSI.</li>
-          <li>Emergent photon and spinon signatures in static/dynamical structure factors.</li>
-          <li>Algorithmic advances for Krylov/TPQ evaluation of finite‑T observables.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h2>Selected Methods</h2>
-        <ul>
-          <li>Lanczos, shift‑invert, block‑Krylov; microcanonical TPQ.</li>
-          <li>NLCE with disorder sampling and variance‑reduction schemes.</li>
-          <li>Classical/semiclassical dynamics (LL), gauge‑field mappings.</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h2>Collaboration</h2>
-        <p>I'm open to collaborations on QSL numerics, neutron scattering comparisons, and efficient ED backends. Send me a note.</p>
-      </div>
-    </section>
-
-    <section id="software" class="grid cards-2">
-      <div class="card">
-        <h2>Open‑Source / Software</h2>
-        <ul>
-          <li><strong>pyroED:</strong> ED toolkit for pyrochlore clusters (Lanczos/shift‑invert, thermodynamics, DSSF). <span class="meta">(private WIP)</span></li>
-          <li><strong>nlce‑disorder:</strong> NLCE framework with disorder sampling and caching. <span class="meta">(private WIP)</span></li>
-          <li><strong>spin‑photon‑LL:</strong> Landau–Lifshitz dynamics for emergent‑photon signatures. <span class="meta">(private WIP)</span></li>
-        </ul>
-        <p class="subtitle">I plan to open‑source parts of these when polished; get in touch if you want early access.</p>
-      </div>
-      <div class="card">
-        <h2>Talks & Notes</h2>
-        <ul>
-          <li>Seminar notes on DO‑QSI gauge mean‑field and field response (slides on request).</li>
-          <li>Short write‑ups on TPQ and structure‑factor evaluation.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="pubs">
-      <div class="card">
-        <h2>Publications</h2>
-        <div class="pub" style="margin-bottom:14px;">
-          <div>
-            <div class="title">Magnetic field response of dipolar–octupolar quantum spin ice</div>
-            <div class="meta">Z. Zhou, F. Desrochers, Y. B. Kim — <em>Phys. Rev. B</em> 110, 174441 (2024)</div>
-            <div>
-              <a href="https://link.aps.org/doi/10.1103/PhysRevB.110.174441" target="_blank" rel="noopener">Journal</a>
-              · <a href="https://arxiv.org/abs/2406.18650" target="_blank" rel="noopener">arXiv:2406.18650</a>
-              · <a href="https://arxiv.org/html/2406.18650v2" target="_blank" rel="noopener">HTML</a>
-            </div>
-          </div>
-          <div><span class="pill">DO‑QSI</span></div>
-        </div>
-        <div class="pub" style="margin-bottom:14px;">
-          <div>
-            <div class="title">Towards a global phase diagram of Ce‑based dipolar–octupolar pyrochlore magnets under magnetic fields</div>
-            <div class="meta">Z. Zhou, Y. B. Kim — preprint (2025)</div>
-            <div>
-              <a href="https://arxiv.org/abs/2502.14067" target="_blank" rel="noopener">arXiv:2502.14067</a>
-              · <a href="https://arxiv.org/html/2502.14067v2" target="_blank" rel="noopener">HTML</a>
-            </div>
-          </div>
-          <div><span class="pill">Phase Diagram</span></div>
-        </div>
-        <p class="subtitle" style="margin-top:10px;">See also related experimental work on Ce<sub>2</sub>Zr<sub>2</sub>O<sub>7</sub> (e.g., <a href="https://link.aps.org/doi/10.1103/PhysRevX.15.021033" target="_blank" rel="noopener">PRX 15, 021033 (2025)</a>).</p>
-      </div>
-    </section>
-
-    <section id="teaching" class="grid cards-2">
-      <div class="card">
-        <h2>Teaching & Mentoring</h2>
-        <ul>
-          <li>Teaching Assistant — University of Toronto (various physics courses).</li>
-          <li>Mentor — Directed Reading Program (condensed‑matter numerics topics).</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h2>Service</h2>
-        <ul>
-          <li>Referee for internal code reviews; open‑source contributions pending release.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="contact" class="grid cards-2">
-      <div class="card">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:zhengbang.zhou@mail.utoronto.ca">zhengbang.zhou@mail.utoronto.ca</a></p>
-        <p>GitHub: <a href="https://github.com/zhengbangzhou" target="_blank" rel="noopener">github.com/zhengbangzhou</a></p>
-        <p>Google Scholar: <a href="https://scholar.google.com/citations?user=R01gwRcAAAAJ" target="_blank" rel="noopener">Scholar Profile</a></p>
-        <p>Location: Toronto, Canada</p>
-      </div>
-      <div class="card">
-        <h2>Site Info</h2>
-        <p>This is a lightweight static page. Drop this file as <span class="kbd">index.html</span> into your <span class="kbd">zhengbangzhou.github.io</span> repository. No build step required.</p>
-        <p>Customize colors and sections by editing this single file.</p>
-      </div>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:zhengbangzhou@proton.me">zhengbangzhou@proton.me</a></p>
+      <p>GitHub: <a href="https://github.com/yourusername">github.com/yourusername</a></p>
+      <p>LinkedIn: <a href="https://www.linkedin.com/in/yourlinkedin/">linkedin.com/in/yourlinkedin</a></p>
     </section>
   </main>
 
   <footer>
-    &copy; <span id="year"></span> Zhengbang Zhou · Built for GitHub Pages
+    <p>&copy; 2025 Zhengbang Zhou · Powered by GitHub Pages</p>
   </footer>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
