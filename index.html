@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Zhengbang Zhou - Theoretical Condensed Matter Physics</title>
+  <meta name="description" content="Academic webpage of Zhengbang Zhou, Ph.D. candidate in theoretical condensed matter physics at the University of Toronto. Research on frustrated magnetism, strongly correlated systems, quantum and classical spin dynamics.">
+  <meta property="og:title" content="Zhengbang Zhou - Theoretical Condensed Matter Physics" />
+  <meta property="og:description" content="Research in frustrated spin systems, strongly correlated electrons, computational many-body methods, and spin dynamics." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ze-bang.github.io/" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
@@ -17,8 +22,9 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       line-height: 1.6;
       color: #2d3748;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: #f5f7fb;
       min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
     
     .container {
@@ -28,13 +34,13 @@
     }
     
     header {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      background: #ffffffee;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
       position: sticky;
       top: 0;
       z-index: 100;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      border-bottom: 1px solid #e2e8f0;
     }
     
     .header-content {
@@ -56,10 +62,11 @@
     }
     
     nav a {
-      color: #4a5568;
+      color: #334155;
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s ease;
+      padding: 0.25rem 0;
+      transition: color 0.25s ease;
       position: relative;
     }
     
@@ -72,10 +79,11 @@
       position: absolute;
       width: 0;
       height: 2px;
-      bottom: -4px;
+      bottom: -2px;
       left: 0;
-      background-color: #667eea;
+      background: linear-gradient(90deg,#667eea,#764ba2);
       transition: width 0.3s ease;
+      border-radius: 2px;
     }
     
     nav a:hover::after {
@@ -83,28 +91,28 @@
     }
     
     .hero {
-      padding: 4rem 0;
+      padding: 4.5rem 0 3.5rem;
       text-align: center;
-      color: white;
+      color: #1e293b;
+      background: linear-gradient(135deg,#667eea 0%,#764ba2 70%);
+      color: #fff;
     }
     
     .hero h1 {
-      font-size: 3.5rem;
+      font-size: 3.1rem;
       font-weight: 700;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.5px;
     }
     
     .hero p {
-      font-size: 1.3rem;
-      margin-bottom: 2rem;
-      opacity: 0.9;
-      max-width: 600px;
+      font-size: 1.15rem;
+      margin-bottom: 1.75rem;
+      opacity: 0.92;
+      max-width: 680px;
       margin-left: auto;
       margin-right: auto;
+      font-weight: 400;
     }
     
     .social-links {
@@ -141,9 +149,9 @@
     
     main {
       background: white;
-      margin: 2rem auto;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      margin: 2rem auto 3rem;
+      border-radius: 18px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
       overflow: hidden;
     }
     
@@ -157,21 +165,22 @@
     }
     
     h2 {
-      font-size: 2rem;
+      font-size: 1.85rem;
       font-weight: 600;
-      margin-bottom: 1.5rem;
-      color: #2d3748;
+      margin-bottom: 1.2rem;
+      color: #1f2937;
       position: relative;
+      letter-spacing: -0.5px;
     }
     
     h2::after {
       content: '';
       position: absolute;
-      bottom: -8px;
+      bottom: -6px;
       left: 0;
-      width: 60px;
+      width: 54px;
       height: 3px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(120deg,#667eea,#764ba2);
       border-radius: 2px;
     }
     
@@ -187,13 +196,17 @@
       height: 200px;
       border-radius: 50%;
       object-fit: cover;
-      object-position: center;
-      transform: scale(1.2);
-      border: 4px solid white;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      object-position: 50% 38%; /* slightly higher crop for professional framing */
+      transform: scale(1.3);
+      border: 4px solid #ffffff;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
       margin: 0 auto;
       display: block;
       overflow: hidden;
+      transition: transform 0.4s ease;
+    }
+    .profile-image:hover {
+      transform: scale(1.33);
     }
     
     .research-interests {
@@ -300,7 +313,7 @@
     }
     
     .contact-item a {
-      color: #4a5568;
+      color: #374151;
       text-decoration: none;
       font-weight: 500;
     }
@@ -311,15 +324,25 @@
     
     footer {
       text-align: center;
-      padding: 2rem;
-      background: #2d3748;
-      color: #a0aec0;
+      padding: 2rem 1rem 3rem;
+      background: #1f2937;
+      color: #9ca3af;
       margin-top: 2rem;
+      font-size: 0.9rem;
+    }
+    footer a { color: #e5e7eb; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* Accessibility focus styles */
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid #667eea;
+      outline-offset: 3px;
+      border-radius: 4px;
     }
     
-    @media (max-width: 768px) {
+  @media (max-width: 768px) {
       .hero h1 {
-        font-size: 2.5rem;
+    font-size: 2.2rem;
       }
       
       .about-grid {
@@ -327,24 +350,19 @@
         gap: 2rem;
       }
       
-      nav {
-        flex-direction: column;
-        gap: 1rem;
-      }
+  nav { flex-direction: column; gap: 0.75rem; }
       
       .header-content {
         flex-direction: column;
         gap: 1rem;
       }
       
-      .social-links {
-        flex-direction: column;
-        align-items: center;
-      }
+    .social-links { flex-direction: column; align-items: center; }
     }
   </style>
 </head>
 <body>
+  <a href="#about" style="position:absolute;left:-1000px;top:auto;width:1px;height:1px;overflow:hidden;" onfocus="this.style.position='static';this.style.width='auto';this.style.height='auto';this.style.padding='0.5rem 1rem';this.style.background='#ffffff';this.style.borderRadius='4px';">Skip to content</a>
   <header>
     <div class="container">
       <div class="header-content">
@@ -352,7 +370,7 @@
         <nav>
           <a href="#about">About</a>
           <a href="#research">Research</a>
-          <a href="https://scholar.google.com/citations?user=R01gwRcAAAAJ&hl=en" target="_blank">Publications</a>
+      <a href="https://scholar.google.com/citations?user=R01gwRcAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Publications</a>
           <a href="#contact">Contact</a>
         </nav>
       </div>
@@ -364,11 +382,11 @@
       <h1>Zhengbang Zhou</h1>
       <p>Ph.D. Candidate in Theoretical Condensed Matter Physics · University of Toronto</p>
       <div class="social-links">
-        <a href="https://github.com/ze-bang" class="social-link" target="_blank">
+        <a href="https://github.com/ze-bang" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
           <i class="fab fa-github"></i>
           GitHub
         </a>
-        <a href="mailto:zhengbangzhou@mail.utoronto.ca" class="social-link">
+        <a href="mailto:zhengbangzhou@mail.utoronto.ca" class="social-link" aria-label="Send Email">
           <i class="fas fa-envelope"></i>
           Email
         </a>
@@ -381,12 +399,14 @@
       <h2>About Me</h2>
       <div class="about-grid">
         <div>
-          <img src="IMG_8119.jpg" alt="Zhengbang Zhou" class="profile-image">
+          <img src="IMG_8119.jpg" alt="Portrait of Zhengbang Zhou" class="profile-image" loading="lazy">
         </div>
         <div>
-          <p>
-            I am a Ph.D. candidate at the University of Toronto, working with Prof. Yong-Baek Kim. 
-            My research focuses on frustrated spin systems and other strongly correlated electron systems using various computational methods.
+          <p style="max-width:58ch;">
+            I am a Ph.D. candidate in theoretical condensed matter physics at the University of Toronto, supervised by Prof. Yong-Baek Kim. My work centers on emergent phenomena in strongly correlated and frustrated quantum materials, where competing interactions give rise to unconventional ground states and excitations.
+          </p>
+          <p style="max-width:58ch; margin-top:1rem;">
+            Methodologically, I integrate analytical field-theoretic approaches with large-scale numerical simulations to extract dynamical response, entanglement structure, and finite-temperature behavior in regimes beyond perturbative control.
           </p>
         </div>
       </div>
@@ -394,9 +414,12 @@
 
     <section id="research">
       <h2>Research Focus</h2>
-      <p>
-            Beyond mean-field theory, I employ computational techniques—including exact diagonalization, quantum Monte Carlo, and numerical linked-cluster expansions—to investigate quantum many-body systems. In particular, I focus on computing dynamical properties and entanglement characteristics in strongly correlated regimes. I also implement Markov Chain Monte Carlo methods for classical spin systems and leverage CUDA acceleration for large-scale Landau–Lifshitz dynamics.
-        </p>
+      <p style="max-width:70ch;">
+        I study quantum many-body systems in which frustration, topology, or proximity to fractionalization produces strongly correlated phases that elude simple quasiparticle descriptions. My current interests include dynamical signatures of spin liquids, entanglement diagnostics of competing ordered and disordered phases, and finite-temperature crossovers in low-dimensional magnets.
+      </p>
+      <p style="max-width:70ch; margin-top:1rem;">
+        To address these problems, I employ exact diagonalization, quantum Monte Carlo (where sign-problem free), numerical linked-cluster expansions, and tensor-inspired post-processing of dynamical correlators. For classical and semi-classical regimes I implement custom Markov Chain Monte Carlo and GPU-accelerated Landau–Lifshitz spin dynamics (CUDA) to access longer time and length scales.
+      </p>
     </section>
 
 
@@ -416,7 +439,7 @@
           <i class="fab fa-github"></i>
           <div>
             <strong>GitHub</strong><br>
-            <a href="https://github.com/ze-bang" target="_blank">github.com/ze-bang</a>
+            <a href="https://github.com/ze-bang" target="_blank" rel="noopener noreferrer">github.com/ze-bang</a>
           </div>
         </div>
         
@@ -425,7 +448,7 @@
           <i class="fas fa-university"></i>
           <div>
             <strong>Institution</strong><br>
-            <a href="https://www.physics.utoronto.ca/" target="_blank">University of Toronto Physics</a>
+            <a href="https://www.physics.utoronto.ca/" target="_blank" rel="noopener noreferrer">University of Toronto Physics</a>
           </div>
         </div>
 
@@ -435,7 +458,8 @@
 
   <footer>
     <div class="container">
-      <p>&copy; 2025 Zhengbang Zhou · Theoretical Condensed Matter Physics · University of Toronto</p>
+  <p>&copy; 2025 Zhengbang Zhou · Theoretical Condensed Matter Physics · University of Toronto</p>
+  <p style="margin-top:0.5rem;">Last updated: <time datetime="2025-09-08">September 2025</time></p>
     </div>
   </footer>
 </body>
