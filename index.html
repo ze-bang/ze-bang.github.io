@@ -186,14 +186,11 @@
       width: 200px;
       height: 200px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-      color: white;
-      font-weight: 700;
+      object-fit: cover;
+      border: 4px solid white;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
       margin: 0 auto;
+      display: block;
     }
     
     .research-interests {
@@ -381,12 +378,12 @@
       <h2>About Me</h2>
       <div class="about-grid">
         <div>
-          <div class="profile-image">ZZ</div>
+          <img src="IMG_8119.jpg" alt="Zhengbang Zhou" class="profile-image">
         </div>
         <div>
           <p>
             I am a Ph.D. candidate at the University of Toronto, working with Prof. Yong-Baek Kim. 
-            My research focuses on frustrated spin systems and other strongly correlated electron systems leveraging computational methods.
+            My research focuses on frustrated spin systems and other strongly correlated electron systems using computational methods.
           </p>
         </div>
       </div>
@@ -395,7 +392,7 @@
     <section id="research">
       <h2>Research Focus</h2>
       <p>
-            Beyond mean-field theory, I employ advanced computational techniques—including exact diagonalization, Monte Carlo simulations, and numerical linked-cluster expansions—to investigate quantum many-body systems. In particular, I focus on computing dynamical properties and entanglement characteristics in strongly correlated regimes. I also implement Markov Chain Monte Carlo methods for classical spin systems and leverage CUDA acceleration for large-scale Landau–Lifshitz dynamics.
+            Beyond mean-field theory, I employ computational techniques—including exact diagonalization, quantum Monte Carlo, and numerical linked-cluster expansions—to investigate quantum many-body systems. In particular, I focus on computing dynamical properties and entanglement characteristics in strongly correlated regimes. I also implement Markov Chain Monte Carlo methods for classical spin systems and leverage CUDA acceleration for large-scale Landau–Lifshitz dynamics.
         </p>
     </section>
 
