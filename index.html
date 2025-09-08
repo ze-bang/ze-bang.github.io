@@ -83,10 +83,10 @@
     h2 { font-size:1.85rem; font-weight:600; margin-bottom:1.4rem; letter-spacing:.4px; position:relative; padding-bottom:.6rem; }
     h2::after { content:""; position:absolute; left:0; bottom:0; width:56px; height:3px; border-radius:3px; background: linear-gradient(90deg,var(--color-accent), var(--color-accent-alt)); }
     .about-grid { display:grid; grid-template-columns: 240px 1fr; gap:3rem; align-items:start; }
-    .profile-wrapper { position:relative; width:220px; height:220px; margin:0 auto; }
+  .profile-wrapper { position:relative; width:190px; height:190px; margin:0 auto; }
     .profile-image {
       width:100%; height:100%; border-radius:50%; object-fit: cover; object-position: 50% 42%;
-      transform: scale(1.35); /* further internal zoom */
+      transform: scale(1.25); /* moderated internal zoom */
       border:4px solid #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.08),0 8px 32px rgba(0,0,0,0.08);
       display:block; overflow:hidden; background:#fff;
     }
@@ -112,7 +112,7 @@
     /* Accessibility focus */
     a:focus-visible { outline:2px solid var(--color-accent-alt); outline-offset:3px; border-radius:3px; }
     /* Responsive */
-    @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap:2.4rem; } .profile-wrapper { width:200px; height:200px; } }
+  @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap:2.4rem; } .profile-wrapper { width:180px; height:180px; } }
     @media (max-width: 640px) {
       nav { gap:1rem; }
       .header-content { flex-direction:column; padding:.85rem 0 1rem; }
