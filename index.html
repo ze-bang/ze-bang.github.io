@@ -134,6 +134,26 @@
       color: var(--color-accent); background: rgba(var(--color-accent-rgb),0.08);
       border:1px solid rgba(var(--color-accent-rgb),0.15); border-radius: 20px; padding:.15rem .55rem;
     }
+    .group-head {
+      font-size:.78rem; font-weight:600; text-transform:uppercase; letter-spacing:1.2px;
+      color: var(--color-text-soft); margin:2.1rem 0 .9rem;
+      display:flex; align-items:center; gap:.75rem;
+    }
+    .group-head::after { content:""; flex:1; height:1px; background: var(--color-border); }
+    .code-card.featured { grid-column: 1 / -1; }
+    .code-card.featured .card-head strong { font-size:1.08rem; }
+    .code-card.featured p { font-size:.88rem; }
+    .repo-list { list-style:none; display:grid; gap:.55rem; }
+    .repo-list li {
+      display:grid; grid-template-columns: minmax(130px, max-content) 1fr; gap:.2rem 1.1rem;
+      align-items:baseline; padding:.7rem .9rem; border:1px solid var(--color-border);
+      border-radius: var(--radius-sm); background:#fff; transition: var(--transition);
+    }
+    .repo-list li:hover { border-color: var(--color-accent-alt); box-shadow: var(--shadow-sm); }
+    .repo-list a { font-weight:600; font-size:.88rem; color: var(--color-accent); text-decoration:none; letter-spacing:.2px; }
+    .repo-list a:hover { text-decoration:underline; }
+    .repo-list span { font-size:.83rem; color: var(--color-text-soft); line-height:1.5; }
+    @media (max-width: 640px) { .repo-list li { grid-template-columns: 1fr; } }
     footer { text-align:center; padding:2.2rem 1rem; background: #111827; color:#94a3b8; font-size:.8rem; letter-spacing:.4px; }
     html { scroll-behavior:smooth; }
     /* Accessibility focus */
@@ -230,50 +250,105 @@
     <section id="code">
       <h2>Methods &amp; Code</h2>
       <p class="lead">
-        Most of my numerics are written from scratch and released openly, both to keep the results reproducible and to keep the algorithms honest&mdash;every solver below is validated against exact diagonalization.
+        Most of my numerics are written from scratch and released openly, both to keep the results reproducible and to keep the algorithms honest&mdash;every solver below is validated against exact diagonalization or an analytic limit.
       </p>
+
+      <h3 class="group-head">Quantum many-body solvers</h3>
       <div class="code-grid">
+
+        <a class="code-card featured" href="https://github.com/ze-bang/QED" target="_blank" rel="noopener">
+          <div class="card-head"><i class="fas fa-atom"></i><strong>QED &mdash; Quantum Exact Diagonalization</strong></div>
+          <p>
+            My main workhorse: a C++17 / CUDA / MPI engine with first-class Python bindings. Ground states and low-lying spectra via Lanczos, block Lanczos and Krylov&ndash;Schur; finite-temperature thermodynamics via FTLM, LTLM, OFTLM, mTPQ and KPM; static and dynamical structure factors <em>S</em>(<em>Q</em>,&omega;,<em>T</em>). The symmetry engine handles U(1) S<sup>z</sup> and S<sup>z</sup> parity, spatial groups, global spin flip, time reversal, and <em>full non-abelian point-group irreps</em> through a factorized little-group construction, with matrix-free representative walks at scale. Runs on OpenMP, a single GPU (cuBLAS / cuSPARSE), or multi-rank MPI with multi-GPU NCCL.
+          </p>
+          <div class="stack"><span>C++17</span><span>CUDA</span><span>MPI</span><span>Python</span><span>HDF5</span></div>
+        </a>
+
+        <a class="code-card" href="https://github.com/ze-bang/QED_NLCE" target="_blank" rel="noopener">
+          <div class="card-head"><i class="fas fa-sitemap"></i><strong>QED_NLCE</strong></div>
+          <p>Numerical linked-cluster expansion for pyrochlore and triangular spin-&frac12; models: cluster generation from canonical graph certificates, embedding multiplicities, weighted subtraction and resummation, with every cluster diagonalization delegated to QED.</p>
+          <div class="stack"><span>Python</span><span>NLCE</span><span>pynauty</span></div>
+        </a>
 
         <a class="code-card" href="https://github.com/ze-bang/DMRG" target="_blank" rel="noopener">
           <div class="card-head"><i class="fas fa-project-diagram"></i><strong>DMRG++</strong></div>
-          <p>Matrix product state / MPO library with a symbolic finite-state-machine MPO builder, two-site variational sweeps, and full entanglement diagnostics.</p>
+          <p>Matrix product state / MPO library with a symbolic finite-state-machine MPO builder, two-site variational sweeps on a ramped bond-dimension schedule, and Schmidt-spectrum and entanglement-Hamiltonian diagnostics.</p>
           <div class="stack"><span>Python</span><span>MPS</span><span>NumPy/SciPy</span></div>
         </a>
 
         <a class="code-card" href="https://github.com/ze-bang/DDMRG_FT" target="_blank" rel="noopener">
           <div class="card-head"><i class="fas fa-wave-square"></i><strong>ddmrg_ft</strong></div>
-          <p>Finite-temperature spectral functions by purification plus frequency-domain dynamical DMRG, on a symmetry-resolved block-sparse tensor engine.</p>
-          <div class="stack"><span>Python</span><span>Purification</span><span>Spectra</span></div>
+          <p>Finite-temperature spectral functions by purification plus frequency-domain dynamical DMRG, on a symmetry-resolved block-sparse tensor engine. No error accumulates along a time axis, and the frequency grid parallelizes perfectly.</p>
+          <div class="stack"><span>Python</span><span>Purification</span><span>Liouvillian</span></div>
         </a>
 
         <a class="code-card" href="https://github.com/ze-bang/NQS" target="_blank" rel="noopener">
           <div class="card-head"><i class="fas fa-network-wired"></i><strong>NQS</strong></div>
-          <p>Neural quantum states for spin-&frac12; lattice models: GCNN and vision-transformer ans&auml;tze, MinSR optimization, vectorized Metropolis sampling.</p>
+          <p>Neural quantum states for spin-&frac12; lattice models: group-equivariant CNNs over the full space group and vision-transformer ans&auml;tze, optimized with MinSR stochastic reconfiguration and vectorized Metropolis sampling.</p>
           <div class="stack"><span>JAX/Flax</span><span>GCNN</span><span>MinSR</span></div>
         </a>
 
         <a class="code-card" href="https://github.com/ze-bang/IPEPS" target="_blank" rel="noopener">
           <div class="card-head"><i class="fas fa-th"></i><strong>iPEPS</strong></div>
-          <p>Infinite projected entangled-pair states with CTMRG contraction and variational optimization through automatic differentiation.</p>
+          <p>Infinite projected entangled-pair states with CTMRG contraction, stable SVD primitives with regularized backward passes, and variational optimization through automatic differentiation.</p>
           <div class="stack"><span>PyTorch</span><span>CTMRG</span><span>AD</span></div>
         </a>
 
         <a class="code-card" href="https://github.com/ze-bang/QMC" target="_blank" rel="noopener">
           <div class="card-head"><i class="fas fa-dice"></i><strong>QMC</strong></div>
-          <p>Stochastic series expansion for the Heisenberg model and determinant QMC for the Hubbard model, header-only and dependency-free.</p>
+          <p>Two engines behind one dependency-free C++20 core: stochastic series expansion for the bipartite Heisenberg model and BSS determinant QMC for the Hubbard model, with binning analysis and jackknife error propagation.</p>
           <div class="stack"><span>C++20</span><span>SSE</span><span>DQMC</span></div>
         </a>
 
-        <a class="code-card" href="https://github.com/ze-bang/QED" target="_blank" rel="noopener">
-          <div class="card-head"><i class="fas fa-atom"></i><strong>QED &amp; QED_NLCE</strong></div>
-          <p>Exact-diagonalization toolkit for frustrated lattices, plus a numerical linked-cluster expansion workflow built on top of it.</p>
-          <div class="stack"><span>ED</span><span>NLCE</span><span>Dynamics</span></div>
+      </div>
+
+      <h3 class="group-head">Classical spin dynamics</h3>
+      <div class="code-grid">
+
+        <a class="code-card featured" href="https://github.com/ze-bang/ClassicalSpin_Cpp" target="_blank" rel="noopener">
+          <div class="card-head"><i class="fas fa-magnet"></i><strong>ClassicalSpin_Cpp</strong></div>
+          <p>
+            A C++20 / CUDA framework for classical spin systems, covering the whole path from ground state to spectroscopy: simulated annealing, MPI parallel tempering, Landau&ndash;Lifshitz molecular dynamics, and pump&ndash;probe and two-dimensional coherent spectroscopy. Lattices include honeycomb (BCAO, Kitaev), pyrochlore, and a mixed SU(2)&nbsp;+&nbsp;SU(3) TmFeO&#8323; construction, with an extensible geometry layer, N-dimensional parameter sweeps, and HDF5 output for large datasets.
+          </p>
+          <div class="stack"><span>C++20</span><span>CUDA</span><span>MPI</span><span>OpenMP</span><span>2DCS</span></div>
+        </a>
+
+        <a class="code-card" href="https://github.com/ze-bang/ClassicalSpinMC.jl" target="_blank" rel="noopener">
+          <div class="card-head"><i class="fas fa-dice-d20"></i><strong>ClassicalSpinMC.jl</strong></div>
+          <p>Classical spin Monte Carlo in Julia for arbitrary lattices up to three dimensions with any number of basis sites, supporting Zeeman, onsite, bilinear, cubic and quartic couplings, with MPI parallel tempering and HDF5 checkpointing.</p>
+          <div class="stack"><span>Julia</span><span>MPI</span><span>HDF5</span></div>
         </a>
 
       </div>
+
+      <h3 class="group-head">Research campaigns</h3>
+      <ul class="repo-list">
+        <li>
+          <a href="https://github.com/ze-bang/twist_qsi" target="_blank" rel="noopener">twist_qsi</a>
+          <span>A winding-free finite-cluster protocol for quantum spin ice, which projects out the noncontractible ring exchanges a periodic cluster invents by deleting ice-block matrix elements between transport sectors of the exact Feshbach map.</span>
+        </li>
+        <li>
+          <a href="https://github.com/ze-bang/2dcs_gauge" target="_blank" rel="noopener">2dcs_gauge</a>
+          <span>Two-dimensional coherent spectroscopy of the gauge sector of quantum spin ice, asking whether the emergent photon leaves a signature that survives removal of the spurious winding loop.</span>
+        </li>
+        <li>
+          <a href="https://github.com/ze-bang/BCAO_LSWT" target="_blank" rel="noopener">BCAO_LSWT</a>
+          <span>A margin-gated staged search over the eight-parameter BaCo&#8322;(AsO&#8324;)&#8322; Hamiltonian for an incommensurate double-<em>Q</em> ground state, where cheap tiers may only reject what no quantum correction could rescue and every rejection is audited.</span>
+        </li>
+        <li>
+          <a href="https://github.com/ze-bang/NCTO" target="_blank" rel="noopener">NCTO</a>
+          <span>A one-defect picture for long-lived optically written zigzag order in Na&#8322;Co&#8322;TeO&#8326;, together with its driven-dynamics campaign.</span>
+        </li>
+        <li>
+          <a href="https://github.com/ze-bang/qfi_chain" target="_blank" rel="noopener">qfi_chain</a>
+          <span>DMRG and METTS validation of a geometric matched-filter hierarchy for extracting quantum Fisher information in the J&#8321;&ndash;J&#8322;&ndash;J&#8323; spin-&frac12; chain.</span>
+        </li>
+        <li>
+          <a href="https://github.com/ze-bang/bfg_pipeline" target="_blank" rel="noopener">bfg_pipeline</a>
+          <span>A SLURM post-processing pipeline turning symmetrized Lanczos output on the kagome lattice into correlations, structure factors, reduced density matrices, entanglement entropies and tower-of-states spectra.</span>
+        </li>
+      </ul>
     </section>
-
-
 
     <section id="contact">
       <h2>Contact & Links</h2>
