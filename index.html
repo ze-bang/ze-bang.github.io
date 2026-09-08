@@ -107,6 +107,33 @@
     .contact-item i { font-size:1.35rem; width:32px; text-align:center; color: var(--color-accent); }
     .contact-item a { color: var(--color-text-soft); text-decoration:none; font-weight:500; font-size:.9rem; transition: var(--transition); }
     .contact-item a:hover { color: var(--color-accent); }
+    /* Methods & code cards */
+    .lead { font-size:1.02rem; color: var(--color-text-soft); max-width:70ch; }
+    .method-block { margin-top:1.9rem; }
+    .method-block h3 {
+      font-size:1.02rem; font-weight:600; letter-spacing:.3px; margin-bottom:.45rem;
+      display:flex; align-items:center; gap:.55rem;
+    }
+    .method-block h3 i { color: var(--color-accent); font-size:.95rem; }
+    .method-block p { color: var(--color-text-soft); font-size:.95rem; max-width:70ch; }
+    .code-grid { display:grid; gap:1rem; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); margin-top:.6rem; }
+    .code-card {
+      display:block; text-decoration:none; color:inherit;
+      background: linear-gradient(180deg,#ffffff 0%, #f8fafc 100%);
+      border:1px solid var(--color-border); border-radius: var(--radius-md);
+      padding:1.05rem 1.1rem 1rem; transition: var(--transition);
+    }
+    .code-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: var(--color-accent-alt); }
+    .code-card .card-head { display:flex; align-items:center; gap:.5rem; margin-bottom:.4rem; }
+    .code-card .card-head i { color: var(--color-accent); font-size:.9rem; }
+    .code-card .card-head strong { font-size:.95rem; font-weight:600; letter-spacing:.3px; }
+    .code-card p { font-size:.83rem; color: var(--color-text-soft); line-height:1.5; margin:0; }
+    .code-card .stack { display:flex; flex-wrap:wrap; gap:.35rem; margin-top:.65rem; }
+    .code-card .stack span {
+      font-size:.68rem; font-weight:500; letter-spacing:.4px; text-transform:uppercase;
+      color: var(--color-accent); background: rgba(var(--color-accent-rgb),0.08);
+      border:1px solid rgba(var(--color-accent-rgb),0.15); border-radius: 20px; padding:.15rem .55rem;
+    }
     footer { text-align:center; padding:2.2rem 1rem; background: #111827; color:#94a3b8; font-size:.8rem; letter-spacing:.4px; }
     html { scroll-behavior:smooth; }
     /* Accessibility focus */
@@ -129,6 +156,7 @@
         <nav>
           <a href="#about">About</a>
           <a href="#research">Research</a>
+          <a href="#code">Code</a>
           <a href="https://scholar.google.com/citations?user=R01gwRcAAAAJ&hl=en" target="_blank">Publications</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -165,15 +193,84 @@
             I am a Ph.D. candidate at the University of Toronto, working with Prof. Yong-Baek Kim. 
             My research focuses on frustrated spin systems and other strongly correlated electron systems using various computational methods.
           </p>
+          <div class="research-interests">
+            <span class="interest-tag">Frustrated Magnetism</span>
+            <span class="interest-tag">Quantum Spin Liquids</span>
+            <span class="interest-tag">Quantum Spin Ice</span>
+            <span class="interest-tag">Tensor Networks &amp; DMRG</span>
+            <span class="interest-tag">Neural Quantum States</span>
+            <span class="interest-tag">Exact Diagonalization</span>
+            <span class="interest-tag">Quantum Monte Carlo</span>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="research">
       <h2>Research Focus</h2>
-      <p>
-            Beyond mean-field theory, I employ computational techniques—including exact diagonalization, quantum Monte Carlo, and numerical linked-cluster expansions—to investigate quantum many-body systems. In particular, I focus on computing dynamical properties and entanglement characteristics in strongly correlated regimes. I also implement Markov Chain Monte Carlo methods for classical spin systems and leverage CUDA acceleration for large-scale Landau–Lifshitz dynamics.
+      <p class="lead">
+        Beyond mean-field theory, I employ computational techniques&mdash;including exact diagonalization, quantum Monte Carlo, and numerical linked-cluster expansions&mdash;to investigate quantum many-body systems. In particular, I focus on computing dynamical properties and entanglement characteristics in strongly correlated regimes. I also implement Markov Chain Monte Carlo methods for classical spin systems and leverage CUDA acceleration for large-scale Landau&ndash;Lifshitz dynamics.
+      </p>
+
+      <div class="method-block">
+        <h3><i class="fas fa-link"></i>Tensor networks &amp; DMRG</h3>
+        <p>
+          Exact diagonalization is limited to a few dozen spins, so I am building out a matrix-product-state toolchain to reach the sizes where frustrated phases actually live. This covers two-site variational DMRG for ground and low-lying excited states, frequency-domain dynamical DMRG on purified thermal states for finite-temperature spectral functions&mdash;which avoids the error accumulation of real-time evolution and parallelizes trivially over frequency&mdash;and infinite PEPS optimized by automatic differentiation for genuinely two-dimensional lattices.
         </p>
+      </div>
+
+      <div class="method-block">
+        <h3><i class="fas fa-brain"></i>Neural quantum states</h3>
+        <p>
+          In two dimensions, entanglement scaling eventually defeats tensor networks. I am therefore working with variational neural quantum states: group-equivariant CNNs and vision-transformer ans&auml;tze that encode the full lattice space group, optimized with MinSR&mdash;the kernel-trick reformulation of stochastic reconfiguration&mdash;and benchmarked against exact diagonalization. The target problems are frustrated J&#8321;&ndash;J&#8322; models and chiral-spin-liquid candidates on the triangular lattice, where competing numerical methods still disagree on whether the spin liquid is real.
+        </p>
+      </div>
+    </section>
+
+    <section id="code">
+      <h2>Methods &amp; Code</h2>
+      <p class="lead">
+        Most of my numerics are written from scratch and released openly, both to keep the results reproducible and to keep the algorithms honest&mdash;every solver below is validated against exact diagonalization.
+      </p>
+      <div class="code-grid">
+
+        <a class="code-card" href="https://github.com/ze-bang/DMRG" target="_blank" rel="noopener">
+          <div class="card-head"><i class="fas fa-project-diagram"></i><strong>DMRG++</strong></div>
+          <p>Matrix product state / MPO library with a symbolic finite-state-machine MPO builder, two-site variational sweeps, and full entanglement diagnostics.</p>
+          <div class="stack"><span>Python</span><span>MPS</span><span>NumPy/SciPy</span></div>
+        </a>
+
+        <a class="code-card" href="https://github.com/ze-bang/DDMRG_FT" target="_blank" rel="noopener">
+          <div class="card-head"><i class="fas fa-wave-square"></i><strong>ddmrg_ft</strong></div>
+          <p>Finite-temperature spectral functions by purification plus frequency-domain dynamical DMRG, on a symmetry-resolved block-sparse tensor engine.</p>
+          <div class="stack"><span>Python</span><span>Purification</span><span>Spectra</span></div>
+        </a>
+
+        <a class="code-card" href="https://github.com/ze-bang/NQS" target="_blank" rel="noopener">
+          <div class="card-head"><i class="fas fa-network-wired"></i><strong>NQS</strong></div>
+          <p>Neural quantum states for spin-&frac12; lattice models: GCNN and vision-transformer ans&auml;tze, MinSR optimization, vectorized Metropolis sampling.</p>
+          <div class="stack"><span>JAX/Flax</span><span>GCNN</span><span>MinSR</span></div>
+        </a>
+
+        <a class="code-card" href="https://github.com/ze-bang/IPEPS" target="_blank" rel="noopener">
+          <div class="card-head"><i class="fas fa-th"></i><strong>iPEPS</strong></div>
+          <p>Infinite projected entangled-pair states with CTMRG contraction and variational optimization through automatic differentiation.</p>
+          <div class="stack"><span>PyTorch</span><span>CTMRG</span><span>AD</span></div>
+        </a>
+
+        <a class="code-card" href="https://github.com/ze-bang/QMC" target="_blank" rel="noopener">
+          <div class="card-head"><i class="fas fa-dice"></i><strong>QMC</strong></div>
+          <p>Stochastic series expansion for the Heisenberg model and determinant QMC for the Hubbard model, header-only and dependency-free.</p>
+          <div class="stack"><span>C++20</span><span>SSE</span><span>DQMC</span></div>
+        </a>
+
+        <a class="code-card" href="https://github.com/ze-bang/QED" target="_blank" rel="noopener">
+          <div class="card-head"><i class="fas fa-atom"></i><strong>QED &amp; QED_NLCE</strong></div>
+          <p>Exact-diagonalization toolkit for frustrated lattices, plus a numerical linked-cluster expansion workflow built on top of it.</p>
+          <div class="stack"><span>ED</span><span>NLCE</span><span>Dynamics</span></div>
+        </a>
+
+      </div>
     </section>
 
 
@@ -212,7 +309,7 @@
 
   <footer>
     <div class="container">
-      <p>&copy; 2025 Zhengbang Zhou · Theoretical Condensed Matter Physics · University of Toronto</p>
+      <p>&copy; 2026 Zhengbang Zhou · Theoretical Condensed Matter Physics · University of Toronto</p>
     </div>
   </footer>
   <script>
