@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Zhengbang Zhou &mdash; Theoretical Condensed Matter Physics, University of Toronto</title>
-  <meta name="description" content="Zhengbang Zhou is a Ph.D. candidate in theoretical condensed matter physics at the University of Toronto, working with Yong-Baek Kim on frustrated magnetism, quantum spin liquids and quantum spin ice using exact diagonalization, DMRG and tensor networks, neural quantum states, and quantum Monte Carlo.">
+  <meta name="description" content="Zhengbang Zhou is a Ph.D. candidate in theoretical condensed matter physics at the University of Toronto, working with Yong-Baek Kim on frustrated magnetism, quantum spin liquids and quantum spin ice using exact diagonalization, the density matrix renormalization group and other tensor network methods, and neural quantum states.">
   <meta name="author" content="Zhengbang Zhou">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <link rel="canonical" href="https://ze-bang.github.io/">
@@ -13,7 +13,7 @@
   <meta property="og:type" content="profile">
   <meta property="og:site_name" content="Zhengbang Zhou">
   <meta property="og:title" content="Zhengbang Zhou &mdash; Theoretical Condensed Matter Physics">
-  <meta property="og:description" content="Zhengbang Zhou is a Ph.D. candidate in theoretical condensed matter physics at the University of Toronto, working with Yong-Baek Kim on frustrated magnetism, quantum spin liquids and quantum spin ice using exact diagonalization, DMRG and tensor networks, neural quantum states, and quantum Monte Carlo.">
+  <meta property="og:description" content="Zhengbang Zhou is a Ph.D. candidate in theoretical condensed matter physics at the University of Toronto, working with Yong-Baek Kim on frustrated magnetism, quantum spin liquids and quantum spin ice using exact diagonalization, the density matrix renormalization group and other tensor network methods, and neural quantum states.">
   <meta property="og:url" content="https://ze-bang.github.io/">
   <meta property="og:image" content="https://ze-bang.github.io/profile.jpg">
   <meta property="og:image:alt" content="Portrait of Zhengbang Zhou">
@@ -21,7 +21,7 @@
   <meta property="profile:last_name" content="Zhou">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Zhengbang Zhou &mdash; Theoretical Condensed Matter Physics">
-  <meta name="twitter:description" content="Zhengbang Zhou is a Ph.D. candidate in theoretical condensed matter physics at the University of Toronto, working with Yong-Baek Kim on frustrated magnetism, quantum spin liquids and quantum spin ice using exact diagonalization, DMRG and tensor networks, neural quantum states, and quantum Monte Carlo.">
+  <meta name="twitter:description" content="Zhengbang Zhou is a Ph.D. candidate in theoretical condensed matter physics at the University of Toronto, working with Yong-Baek Kim on frustrated magnetism, quantum spin liquids and quantum spin ice using exact diagonalization, the density matrix renormalization group and other tensor network methods, and neural quantum states.">
   <meta name="twitter:image" content="https://ze-bang.github.io/profile.jpg">
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -41,7 +41,7 @@
     "image": "https://ze-bang.github.io/profile.jpg",
     "email": "mailto:zhengbangzhou@mail.utoronto.ca",
     "jobTitle": "Ph.D. Candidate in Theoretical Condensed Matter Physics",
-    "description": "Zhengbang Zhou is a Ph.D. candidate in theoretical condensed matter physics at the University of Toronto, working with Yong-Baek Kim on frustrated magnetism, quantum spin liquids and quantum spin ice using exact diagonalization, DMRG and tensor networks, neural quantum states, and quantum Monte Carlo.",
+    "description": "Zhengbang Zhou is a Ph.D. candidate in theoretical condensed matter physics at the University of Toronto, working with Yong-Baek Kim on frustrated magnetism, quantum spin liquids and quantum spin ice using exact diagonalization, the density matrix renormalization group and other tensor network methods, and neural quantum states.",
     "worksFor": {
       "@type": "CollegeOrUniversity",
       "name": "University of Toronto",
@@ -61,7 +61,6 @@
       "Tensor networks",
       "Neural quantum states",
       "Exact diagonalization",
-      "Quantum Monte Carlo",
       "Numerical linked-cluster expansion"
     ],
     "sameAs": [
@@ -160,8 +159,6 @@
       border:4px solid #fff; box-shadow: 0 4px 16px rgba(0,0,0,0.08),0 8px 32px rgba(0,0,0,0.08);
       display:block; overflow:hidden; background:#fff;
     }
-    .research-interests { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:1rem; }
-    .interest-tag { background: linear-gradient(90deg,var(--color-accent),var(--color-accent-alt)); color:#fff; padding:.3rem .75rem; font-size:.75rem; letter-spacing:.3px; border-radius: 18px; font-weight:500; }
     .publication { background: linear-gradient(180deg,#ffffff 0%, #f8fafc 100%); border:1px solid var(--color-border); border-radius: var(--radius-md); padding:1.25rem 1.25rem 1.1rem; margin-bottom:1.2rem; position:relative; transition: var(--transition); }
     .publication::before { content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background: linear-gradient(180deg,var(--color-accent),var(--color-accent-alt)); border-top-left-radius:inherit; border-bottom-left-radius:inherit; }
     .publication:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
@@ -179,13 +176,7 @@
     .contact-item a:hover { color: var(--color-accent); }
     /* Methods & code cards */
     .lead { font-size:1.02rem; color: var(--color-text-soft); max-width:70ch; }
-    .method-block { margin-top:1.9rem; }
-    .method-block h3 {
-      font-size:1.02rem; font-weight:600; letter-spacing:.3px; margin-bottom:.45rem;
-      display:flex; align-items:center; gap:.55rem;
-    }
-    .method-block h3 i { color: var(--color-accent); font-size:.95rem; }
-    .method-block p { color: var(--color-text-soft); font-size:.95rem; max-width:70ch; }
+    .lead + .lead { margin-top:1.05rem; }
     .code-grid { display:grid; gap:1rem; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); margin-top:.6rem; }
     .code-card {
       display:block; text-decoration:none; color:inherit;
@@ -269,15 +260,6 @@
             University of Toronto, working with Prof. Yong-Baek Kim. 
             My research focuses on frustrated spin systems and other strongly correlated electron systems using various computational methods.
           </p>
-          <div class="research-interests">
-            <span class="interest-tag">Frustrated Magnetism</span>
-            <span class="interest-tag">Quantum Spin Liquids</span>
-            <span class="interest-tag">Quantum Spin Ice</span>
-            <span class="interest-tag">Tensor Networks &amp; DMRG</span>
-            <span class="interest-tag">Neural Quantum States</span>
-            <span class="interest-tag">Exact Diagonalization</span>
-            <span class="interest-tag">Quantum Monte Carlo</span>
-          </div>
         </div>
       </div>
     </section>
@@ -285,22 +267,13 @@
     <section id="research">
       <h2>Research Focus</h2>
       <p class="lead">
-        Beyond mean-field theory, I employ computational techniques&mdash;including exact diagonalization, quantum Monte Carlo, and numerical linked-cluster expansions&mdash;to investigate quantum many-body systems. In particular, I focus on computing dynamical properties and entanglement characteristics in strongly correlated regimes. I also implement Markov Chain Monte Carlo methods for classical spin systems and leverage CUDA acceleration for large-scale Landau&ndash;Lifshitz dynamics.
+        Beyond mean-field theory, I employ computational techniques&mdash;including exact diagonalization, the density matrix renormalization group and other tensor network methods, and numerical linked-cluster expansions&mdash;to investigate quantum many-body systems. In particular, I focus on computing dynamical properties and entanglement characteristics in strongly correlated regimes. I also implement Markov Chain Monte Carlo methods for classical spin systems and leverage CUDA acceleration for large-scale Landau&ndash;Lifshitz dynamics.
       </p>
 
-      <div class="method-block">
-        <h3><i class="fas fa-link"></i>Tensor networks &amp; DMRG</h3>
-        <p>
-          Exact diagonalization is limited to a few dozen spins, so I am building out a matrix-product-state toolchain to reach the sizes where frustrated phases actually live. This covers two-site variational DMRG for ground and low-lying excited states, frequency-domain dynamical DMRG on purified thermal states for finite-temperature spectral functions&mdash;which avoids the error accumulation of real-time evolution and parallelizes trivially over frequency&mdash;and infinite PEPS optimized by automatic differentiation for genuinely two-dimensional lattices.
-        </p>
-      </div>
+      <p class="lead">
+        More recently I have been drawn to neural quantum states&mdash;group-equivariant networks and transformer ans&auml;tze optimised by stochastic reconfiguration&mdash;as a route past the entanglement barrier that tensor networks eventually run into in two dimensions.
+      </p>
 
-      <div class="method-block">
-        <h3><i class="fas fa-brain"></i>Neural quantum states</h3>
-        <p>
-          In two dimensions, entanglement scaling eventually defeats tensor networks. I am therefore working with variational neural quantum states: group-equivariant CNNs and vision-transformer ans&auml;tze that encode the full lattice space group, optimized with MinSR&mdash;the kernel-trick reformulation of stochastic reconfiguration&mdash;and benchmarked against exact diagonalization. The target problems are frustrated J&#8321;&ndash;J&#8322; models and chiral-spin-liquid candidates on the triangular lattice, where competing numerical methods still disagree on whether the spin liquid is real.
-        </p>
-      </div>
     </section>
 
     <section id="code">
