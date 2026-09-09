@@ -306,7 +306,7 @@
     <section id="code">
       <h2>Methods &amp; Code</h2>
       <p class="lead">
-        Three engines carry most of my numerics. All are written from scratch, validated against exact diagonalization or an analytic limit, and released openly&mdash;both to keep results reproducible and to keep the algorithms honest.
+        Four engines carry most of my numerics. All are written from scratch, validated against exact diagonalization or an analytic limit, and released openly&mdash;both to keep results reproducible and to keep the algorithms honest.
       </p>
       <div class="code-grid">
 
@@ -332,6 +332,14 @@
             Numerical linked-cluster expansion for frustrated spin-&frac12; models on the pyrochlore and triangular lattices. It owns the NLCE mathematics&mdash;cluster generation from canonical graph certificates, embedding multiplicities, subcluster tables, weighted subtraction and resummation&mdash;and dispatches every cluster diagonalization to QED, routing each one through an exact or a thermal-Lanczos tier according to its Hilbert-space dimension.
           </p>
           <div class="stack"><span>Python</span><span>NLCE</span><span>pynauty</span><span>QED</span></div>
+        </a>
+
+        <a class="code-card featured" href="https://github.com/ze-bang/DDMRG_FT_Spin" target="_blank" rel="noopener">
+          <div class="card-head"><i class="fas fa-wave-square"></i><strong>ddmrg_ft</strong></div>
+          <p>
+            Finite-temperature spectral functions without a time axis: purification of the thermal state combined with frequency-domain dynamical DMRG, built on a symmetry-resolved block-sparse tensor engine. Because each frequency is solved as an independent linear system rather than propagated, no error accumulates along a time evolution and the whole frequency grid parallelizes trivially. Covers spin chains and two-dimensional models&mdash;J&#8321;&ndash;J&#8322; triangular among them&mdash;with sector-resolved exact diagonalization for validation and quantum Fisher information as a witness.
+          </p>
+          <div class="stack"><span>Python</span><span>Purification</span><span>DDMRG</span><span>QFI</span></div>
         </a>
 
       </div>
