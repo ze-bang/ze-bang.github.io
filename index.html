@@ -310,7 +310,7 @@
       </p>
       <div class="code-grid">
 
-        <a class="code-card featured" href="https://github.com/ze-bang/QED" target="_blank" rel="noopener">
+        <a class="code-card featured" href="https://github.com/ze-bang/QED_Spin" target="_blank" rel="noopener">
           <div class="card-head"><i class="fas fa-atom"></i><strong>QED &mdash; Quantum Exact Diagonalization</strong></div>
           <p>
             My main workhorse: a C++17 / CUDA / MPI engine with first-class Python bindings. Ground states and low-lying spectra via Lanczos, block Lanczos and Krylov&ndash;Schur; finite-temperature thermodynamics via FTLM, LTLM, OFTLM, mTPQ and KPM; static and dynamical structure factors <em>S</em>(<em>Q</em>,&omega;,<em>T</em>). The symmetry engine handles U(1) S<sup>z</sup> and S<sup>z</sup> parity, spatial groups, global spin flip, time reversal, SU(2) total spin, and <em>full non-abelian point-group irreps</em> through a factorized little-group construction, with matrix-free representative walks at scale. Runs on OpenMP, a single GPU (cuBLAS / cuSPARSE), or multi-rank MPI with multi-GPU NCCL.
@@ -318,7 +318,7 @@
           <div class="stack"><span>C++17</span><span>CUDA</span><span>MPI</span><span>Python</span><span>HDF5</span></div>
         </a>
 
-        <a class="code-card featured" href="https://github.com/ze-bang/ClassicalSpin_Cpp" target="_blank" rel="noopener">
+        <a class="code-card featured" href="https://github.com/ze-bang/Classical_MCMC_Spin" target="_blank" rel="noopener">
           <div class="card-head"><i class="fas fa-magnet"></i><strong>ClassicalSpin_Cpp</strong></div>
           <p>
             A C++20 / CUDA framework for classical spin systems, covering the whole path from ground state to spectroscopy: simulated annealing, MPI parallel tempering, Landau&ndash;Lifshitz molecular dynamics, and pump&ndash;probe and two-dimensional coherent spectroscopy. Lattices include honeycomb (BCAO, Kitaev), pyrochlore, and a mixed SU(2)&nbsp;+&nbsp;SU(3) TmFeO&#8323; construction, with an extensible geometry layer, N-dimensional parameter sweeps, and HDF5 output for large datasets.
@@ -326,7 +326,7 @@
           <div class="stack"><span>C++20</span><span>CUDA</span><span>MPI</span><span>OpenMP</span><span>2DCS</span></div>
         </a>
 
-        <a class="code-card featured" href="https://github.com/ze-bang/QED_NLCE" target="_blank" rel="noopener">
+        <a class="code-card featured" href="https://github.com/ze-bang/QED_NLCE_Spin" target="_blank" rel="noopener">
           <div class="card-head"><i class="fas fa-sitemap"></i><strong>QED_NLCE</strong></div>
           <p>
             Numerical linked-cluster expansion for frustrated spin-&frac12; models on the pyrochlore and triangular lattices. It owns the NLCE mathematics&mdash;cluster generation from canonical graph certificates, embedding multiplicities, subcluster tables, weighted subtraction and resummation&mdash;and dispatches every cluster diagonalization to QED, routing each one through an exact or a thermal-Lanczos tier according to its Hilbert-space dimension.
