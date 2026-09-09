@@ -195,6 +195,20 @@
       color: var(--color-accent); background: rgba(var(--color-accent-rgb),0.08);
       border:1px solid rgba(var(--color-accent-rgb),0.15); border-radius: 20px; padding:.15rem .55rem;
     }
+    .write-card {
+      display:block; border:1px solid var(--color-border); border-radius: var(--radius-sm);
+      background:#fff; padding:1.1rem 1.25rem; text-decoration:none; color:inherit;
+      transition: var(--transition);
+    }
+    .write-card:hover { border-color: var(--color-accent-alt); box-shadow: var(--shadow-sm); transform: translateY(-2px); }
+    .write-card .wtitle { font-size:1.02rem; font-weight:600; letter-spacing:-.2px; margin-bottom:.15rem; }
+    .write-card .wmeta { font-size:.74rem; text-transform:uppercase; letter-spacing:1px; color: var(--color-text-soft); margin-bottom:.5rem; }
+    .write-card p { font-size:.88rem; color: var(--color-text-soft); line-height:1.6; }
+    .write-links { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.7rem; }
+    .write-links span {
+      font-size:.72rem; font-weight:500; padding:.2rem .55rem; border-radius:4px;
+      background: var(--color-bg-alt); color: var(--color-accent); border:1px solid var(--color-border);
+    }
     .code-card.featured { grid-column: 1 / -1; }
     .code-card.featured .card-head strong { font-size:1.08rem; }
     .code-card.featured p { font-size:.88rem; }
@@ -222,7 +236,8 @@
           <a href="#research">Research</a>
           <a href="#code">Code</a>
           <a href="https://scholar.google.com/citations?user=R01gwRcAAAAJ&amp;hl=en" target="_blank" rel="noopener me">Publications</a>
-          <a href="#contact">Contact</a>
+          <a href="#writing">Writing</a>
+        <a href="#contact">Contact</a>
         </nav>
       </div>
     </div>
@@ -316,6 +331,24 @@
         </a>
 
       </div>
+    </section>
+
+    <section id="writing">
+      <h2>Writing</h2>
+      <p class="lead">
+        Occasional notes on things I have been thinking about that don't belong in a paper.
+      </p>
+      <a class="write-card" href="writing/go-physics.html">
+        <div class="wmeta">Notes &middot; September 2026</div>
+        <div class="wtitle">A living group is a domain with a sink</div>
+        <p>
+          The rules of Go are entirely local; everything that matters in Go is not. The liberty
+          rule turns out to be a Laplacian determinant, capture turns out to be a spectral event,
+          and territory turns out to be a hole in the complement. Comes with a bot you can play
+          against that plots the physics live while you do.
+        </p>
+        <div class="write-links"><span>Go</span><span>lattice models</span><span>topology</span><span>interactive</span></div>
+      </a>
     </section>
 
     <section id="contact">

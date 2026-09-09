@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A living group is a domain with a sink — Zhengbang Zhou</title>
+<meta name="description" content="Why the rules of Go are entirely local but everything that matters in Go is not, and what a graph Laplacian has to say about it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fdfcfa; --ink:#1c1c1c; --soft:#6a6a6a; --line:#e6e3de;
+    --accent:#8a5a2b; --accent2:#2f6f6f; --mark:#fbf3e6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:44rem;margin:0 auto;padding:3rem 1.5rem 6rem}
+
+  .back{font-family:'Inter',sans-serif;font-size:.82rem;color:var(--soft);
+        text-decoration:none;display:inline-block;margin-bottom:2.5rem}
+  .back:hover{color:var(--accent)}
+
+  h1{font-family:'Newsreader',Georgia,serif;font-size:2.3rem;font-weight:500;
+     line-height:1.18;letter-spacing:-.4px;margin-bottom:.6rem}
+  .dek{font-family:'Inter',sans-serif;font-size:.95rem;color:var(--soft);
+       line-height:1.6;margin-bottom:.9rem}
+  .meta{font-family:'Inter',sans-serif;font-size:.76rem;text-transform:uppercase;
+        letter-spacing:1.1px;color:var(--soft);padding-bottom:1.6rem;
+        border-bottom:1px solid var(--line);margin-bottom:2.2rem}
+
+  p{font-family:'Newsreader',Georgia,serif;font-size:1.12rem;line-height:1.72;
+    margin-bottom:1.15rem}
+  h2{font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;
+     text-transform:uppercase;letter-spacing:1.3px;color:var(--accent);
+     margin:2.6rem 0 .9rem}
+  em{font-style:italic}
+  strong{font-weight:600}
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid #e0d2bd}
+  a:hover{border-bottom-color:var(--accent)}
+
+  .eq{font-family:'Inter',sans-serif;background:var(--mark);border:1px solid #f0e4d0;
+      border-radius:8px;padding:.85rem 1rem;margin:1.3rem 0;font-size:.94rem;
+      text-align:center;overflow-x:auto;white-space:nowrap}
+  .eq b{font-weight:600}
+  blockquote{border-left:3px solid var(--accent);padding-left:1.1rem;margin:1.5rem 0;
+             font-family:'Newsreader',Georgia,serif;font-size:1.14rem;font-style:italic;
+             color:#3a3a3a;line-height:1.6}
+  .cta{display:block;background:#fff;border:1px solid var(--line);border-radius:10px;
+       padding:1.1rem 1.25rem;margin:2rem 0;text-decoration:none;border-bottom:1px solid var(--line);
+       transition:all .18s}
+  .cta:hover{border-color:var(--accent);box-shadow:0 4px 16px rgba(0,0,0,.05)}
+  .cta .t{font-family:'Inter',sans-serif;font-weight:600;font-size:.98rem;color:var(--ink)}
+  .cta .d{font-family:'Inter',sans-serif;font-size:.85rem;color:var(--soft);margin-top:.25rem;line-height:1.5}
+  hr{border:0;border-top:1px solid var(--line);margin:2.6rem 0}
+  .foot{font-family:'Inter',sans-serif;font-size:.85rem;color:var(--soft);line-height:1.65}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <a class="back" href="../">&larr; Zhengbang Zhou</a>
+
+  <h1>A living group is a domain with a sink</h1>
+  <p class="dek">
+    The rules of Go are entirely local. Everything that matters in Go is not. I spent a while
+    trying to work out how one becomes the other, and ended up somewhere unexpected: a graph
+    Laplacian, a forest of little paths, and the observation that capturing a group is a
+    spectral event.
+  </p>
+  <div class="meta">Notes &middot; September 2026</div>
+
+  <p>
+    I play Go. Not well enough to be interesting about it, but well enough that I have spent a
+    lot of evenings staring at a board wondering why the game feels the way it does.
+  </p>
+
+  <p>
+    Here is the thing that bothers me, stated as plainly as I can. The rules of Go fit on an
+    index card, and every one of them is local. A point is black, white, or empty. Stones of
+    the same colour that touch are one unit. If a unit has no empty point next to it, take it
+    off the board. That is essentially all of it.
+  </p>
+
+  <p>
+    And yet nothing anyone <em>says</em> about Go is local. Players talk about territory,
+    influence, thickness, a group being alive or dead, a wall facing the wrong way. These are
+    statements about large regions of the board. None of them appear anywhere in the rules.
+    They are not definitions; they are things that <em>happen</em> when you let the local rules
+    run.
+  </p>
+
+  <p>
+    That is a familiar shape if you do condensed matter for a living. It is the shape of every
+    emergence story we tell: magnets don't have magnetism written into the electron, water
+    doesn't have freezing written into the molecule. You write down something local and boring
+    and something global and interesting falls out. So the question I actually wanted to answer
+    was not "can I build a Go AI" — people have done that considerably better than I would —
+    but:
+  </p>
+
+  <blockquote>
+    Can local rules make a system decide what counts as <em>inside</em>?
+  </blockquote>
+
+  <h2>The rule that looks global but isn't</h2>
+
+  <p>
+    Start with the obvious encoding. Every point on the board is one of three things, so give it
+    a variable that takes three values: &minus;1 for white, 0 for empty, +1 for black. Physicists
+    have studied that object to death — it's a spin-1 lattice gas — and on its own it gets you
+    nothing surprising. Stones like to sit next to other stones; that's it.
+  </p>
+
+  <p>
+    The interesting rule is the survival rule. <strong>A group of stones must touch at least one
+    empty point, or it dies.</strong> Read that carefully and it should make you uncomfortable,
+    because it is a statement about a <em>connected component</em> — a global object. To check
+    it you have to trace the whole group. There is no way to look at one stone and know.
+  </p>
+
+  <p>
+    Except there is, and this is the part I find genuinely lovely.
+  </p>
+
+  <p>
+    Take one colour's stones and build the obvious graph: a node per stone, an edge between
+    touching stones. Every graph has a Laplacian, <em>L</em>, which is the discrete version of
+    the operator that runs diffusion. Now add a diagonal matrix <em>R</em> that gives a stone a
+    positive weight if it touches an empty point, and zero if it doesn't. Then:
+  </p>
+
+  <div class="eq">
+    <b>det(L + R) &gt; 0</b> &nbsp;&hArr;&nbsp; every group of that colour has a liberty
+  </div>
+
+  <p>
+    The proof is three lines. That determinant is zero exactly when the matrix has a zero mode,
+    a vector it annihilates. The quadratic form is a sum of squares: differences along edges,
+    plus the root weights. To kill it you need something constant across a whole connected
+    group <em>and</em> zero wherever a stone touches empty space. That is possible only if some
+    entire group touches no empty space at all — which is precisely a dead group.
+  </p>
+
+  <p>
+    So the rule that looked irreducibly global is a determinant. And determinants of this exact
+    shape are not arbitrary: by a classical theorem, <em>det(L&nbsp;+&nbsp;R)</em> counts
+    something. It counts the ways of drawing a forest of little paths on the stones such that
+    every stone follows a path out to a liberty. Each dying group is a group where no such
+    escape route can be drawn.
+  </p>
+
+  <h2>Capture is a spectral event</h2>
+
+  <p>
+    Once you have written it this way, a reinterpretation falls out that I did not expect and
+    have not stopped thinking about.
+  </p>
+
+  <p>
+    <em>L&nbsp;+&nbsp;R</em> is what a mathematician would call a killed Laplacian: it describes
+    a random walker wandering around on the stones of a group, who can escape whenever it reaches
+    a stone that touches empty space. The liberties are absorbing boundaries. Drains.
+  </p>
+
+  <blockquote>
+    A living group is a domain with a sink.
+  </blockquote>
+
+  <p>
+    That is not a metaphor — it is the same equation. And it makes life and death, which in Go is
+    a famously binary and famously difficult judgement, into something continuous. The smallest
+    eigenvalue of that matrix, which I'll call the liberty gap, measures how freely the walker can
+    escape. A fat healthy group with liberties on all sides has a large gap. A long snaking group
+    whose only escape is through a narrow corridor has a small one, even if you can't see the
+    problem yet. And at the exact moment of capture, the gap hits zero and the determinant
+    vanishes.
+  </p>
+
+  <p>
+    Every Go player already knows this feeling: a group that is technically alive but that you
+    do not trust. The gap is what that feeling would look like if you wrote it down.
+  </p>
+
+  <h2>Territory is a hole</h2>
+
+  <p>
+    The other half is territory, and here the right language turns out to be topology.
+  </p>
+
+  <p>
+    Don't look at the stones. Look at the empty space, and ask how many separate pieces it falls
+    into. At the start of the game the answer is one — the whole board is one connected emptiness.
+    As stones go down, walls form, and the emptiness starts breaking into chambers. Territory is
+    just a chamber that only one colour touches.
+  </p>
+
+  <p>
+    There is a theorem — Alexander duality — that says the number of extra pieces you cut a
+    surface into is exactly the number of independent loops in the thing doing the cutting. So
+    counting territories and counting closed walls are literally the same computation, done from
+    opposite sides. The board's own edge counts as one of those walls, which is the formal reason
+    corner territory is cheap and centre territory is expensive: in the corner, two sides of your
+    enclosure are already built.
+  </p>
+
+  <p>
+    I don't think this is a coincidence about Go so much as a fact about enclosure that Go happens
+    to make vivid.
+  </p>
+
+  <h2>The actual question</h2>
+
+  <p>
+    Which brings me to what I actually want to know, and don't.
+  </p>
+
+  <p>
+    You can always <em>cheat</em>. You can write a model that gets rewarded for surrounding
+    territory, run it, and watch it surround territory. That proves nothing; you put the answer
+    in by hand.
+  </p>
+
+  <p>
+    The honest experiment is to write down the local energy — stones like neighbours, stones cost
+    something to place — plus the survival constraint, and <strong>nothing that mentions area or
+    enclosure at all</strong>. Then run it and ask whether large enclosed regions show up anyway.
+  </p>
+
+  <div class="eq">
+    <b>Can a locally interacting system undergo a phase transition in the topology of its complement?</b>
+  </div>
+
+  <p>
+    Phase transitions in density, in magnetisation, in order — those we understand. A phase
+    transition in whether the empty space is <em>connected</em> is a stranger thing to ask for. If
+    it happens, the interesting question is whether it needs an adversary: whether two players
+    trying to beat each other produce enclosure that neither thermal equilibrium nor undirected
+    random play ever would. My suspicion is yes, and suspicion is all it currently is.
+  </p>
+
+  <p>
+    So this is not a finished result. It is a well-posed question with the boring parts already
+    proved, which is the stage of a project I enjoy most.
+  </p>
+
+  <h2>You can play against it</h2>
+
+  <p>
+    Because the model scores positions, it can pick moves — so I let it. The bot below has no tree
+    search, no neural network, and no opening book. It scores every legal move by the energy of the
+    resulting position, including the liberty-entropy term, and samples from the Boltzmann weight.
+  </p>
+
+  <p>
+    It is not strong. Any club player will dismantle it. But it is <em>transparent</em> in a way
+    that a neural network is not: every curve plotted next to the board is a term the bot is
+    actually playing by, and the sliders are the coefficients in the Hamiltonian. Turn up the
+    clustering term and it huddles. Turn up the liberty term and it stops caring about territory
+    and starts fighting. Drop the temperature to zero and it becomes rigid and deterministic and,
+    oddly, worse.
+  </p>
+
+  <p>
+    Watching the liberty gap of your own group slide toward zero while you are busy elsewhere is,
+    I think, the most useful thing in it.
+  </p>
+
+  <a class="cta" href="https://ze-bang.github.io/go-lattice/">
+    <div class="t">Play against the physics &rarr;</div>
+    <div class="d">
+      9&times;9, 13&times;13 or 19&times;19, with the liberty gap, log&nbsp;det(L+R), chamber
+      count and territory plotted live as you play.
+    </div>
+  </a>
+
+  <a class="cta" href="https://github.com/ze-bang/go-lattice">
+    <div class="t">go-lattice on GitHub &rarr;</div>
+    <div class="d">
+      The write-up in full, a Python reference implementation, and the tests that hold the
+      browser engine to the same theorems.
+    </div>
+  </a>
+
+  <hr>
+
+  <p class="foot">
+    The determinant theorem and the duality argument are proved in the write-up. The claims about
+    phase transitions are conjectures, and I have said so wherever they appear. If you know this
+    corner of the literature and I have reinvented something with a name, I would genuinely like
+    to hear about it &mdash; <a href="mailto:zhouzb79@gmail.com">zhouzb79@gmail.com</a>.
+  </p>
+
+</div>
+</body>
+</html>
